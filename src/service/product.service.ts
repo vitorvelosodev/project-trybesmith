@@ -1,12 +1,15 @@
-// import TransactionModel from '../database/models/transaction.model';
-
 import { Product } from '../types/Product';
 import ProductModel, { ProductInputtableFields } from '../model/product.model';
 
 async function createProduct(product : ProductInputtableFields): Promise<Product> {
-  const newTransaction = await ProductModel.create(product);
-
-  return newTransaction.dataValues;
+  const { name, price, orderId } = product;
+  try {
+    if (!name || !price || !orderId) throw new Error();
+    const newTransaction = await ProductModel.create(product);
+    return newTransaction.dataValues;
+  } catch (err) {
+    throw new Error();
+  }
 }
 
 export default {
