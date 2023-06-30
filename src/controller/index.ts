@@ -1,5 +1,7 @@
-import createProduct from './product.controller';
+import productController from './product.controller';
+import orderController from './order.controller';
 
 export default {
-  ...createProduct,
+  productController,
+  orderController,
 };
