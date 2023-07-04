@@ -1,11 +1,11 @@
 import { Model } from 'sequelize';
 import { Order } from '../types/Order';
-import OrderModel, { OrderInputtableFields } from '../model/order.model';
-import ProductModel from '../model/product.model';
+import OrderModel, { OrderSequelizeModel } from '../database/models/order.model';
+import ProductModel from '../database/models/product.model';
 
 type FilteredObject = { id: number, userId: number, productIds: { id: number }[] };
 
-async function getAll(): Promise<Model<Order, OrderInputtableFields>[]> {
+async function getAll(): Promise<Model<Order, OrderSequelizeModel>[]> {
   try {
     const allOrders = await OrderModel.findAll({
       include: {

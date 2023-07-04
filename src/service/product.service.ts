@@ -1,8 +1,8 @@
 import { Model } from 'sequelize';
 import { Product } from '../types/Product';
-import ProductModel, { ProductInputtableFields } from '../model/product.model';
+import ProductModel, { ProductInputtableTypes } from '../database/models/product.model';
 
-async function getAll(): Promise<Model<Product, ProductInputtableFields>[]> {
+async function getAll(): Promise<Model<Product, ProductInputtableTypes>[]> {
   try {
     const allProducts = await ProductModel.findAll();
     return allProducts;
@@ -11,7 +11,7 @@ async function getAll(): Promise<Model<Product, ProductInputtableFields>[]> {
   }
 }
 
-async function createProduct(product : ProductInputtableFields): Promise<Product> {
+async function createProduct(product : ProductInputtableTypes): Promise<Product> {
   const { name, price, orderId } = product;
   try {
     if (!name || !price || !orderId) throw new Error();
